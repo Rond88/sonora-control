@@ -8,45 +8,157 @@
 </head>
 
 <body>
-    <!-- Contenedor global de la aplicacion -->
-    <div class="app-layout">
 
-        <!-- BARRA LATERAL-->
-        <aside class="sidebar">
-            <div class="sidebar-header">
-                <h2>Sonora Control</h2>
-            </div>
-            <nav class="sidebar-nav" aria-label="Navegación principal">
-                <ul>
-                    <li><a href="#dashboard">Dashboard</a></li>
-                    <li><a href="#horarios">Horarios</a></li>
-                    <li><a href="#alumnos">Alumnos</a></li>
-                    <li><a href="#profesores">Profesores</a></li>
-                    <li><a href="#pagos">Pagos</a></li>
-                    <li><a href="#inventario">Inventario</a></li>
-                </ul>
-            </nav>
-        </aside>
+    <!-- BARRA LATERAL DE NAVEGACIÓN -->
+    <aside class="sidebar">
+        <header class="sidebar-header">
+            <h2>Sonora Control</h2>
+        </header>
+        <nav class="sidebar-nav" aria-label="Navegación principal">
+            <ul>
+                <li><a href="#dashboard" class="active">Dashboard</a></li>
+                <li><a href="#horarios">Horarios</a></li>
+                <li><a href="#alumnos">Alumnos</a></li>
+                <li><a href="#profesores">Profesores</a></li>
+                <li><a href="#pagos">Pagos</a></li>
+                <li><a href="#inventario">Inventario</a></li>
+            </ul>
+        </nav>
+    </aside>
 
-        <!-- AREA DE TRABAJO DERECHA -->
-        <div class="main-wrapper">
-            
-            <header class="topbar">
-                <h1>Dashboard</h1>
-            </header>
+    <!-- ÁREA DE CONTENIDO PRINCIPAL -->
+    <main class="content-area">
 
-            <!-- CONTENIDO PRINCIPAL DE LA VISTA -->
-            <main class="content-area">
-               
-            </main>
+        <!-- CABECERA DE LA VISTA -->
+        <header class="topbar">
+            <h1>Dashboard</h1>
+        </header>
 
-            <footer>
-              
-            </footer>
+        <!-- BLOQUE DE KPIs -->
+        <section id="kpi-section">
+            <h2 class="visually-hidden">Métricas Principales</h2>
 
-        </div>
+            <ul class="kpi-list">
+                <li>
+                    <article class="kpi-card">
+                        <h3>Clases hoy</h3>
+                        <p class="kpi-value">14</p>
+                    </article>
+                </li>
+                <li>
+                    <article class="kpi-card">
+                        <h3>Alumnos atendidos</h3>
+                        <p class="kpi-value">21</p>
+                    </article>
+                </li>
+                <li>
+                    <article class="kpi-card">
+                        <h3>Ocupación de aulas</h3>
+                        <p class="kpi-value">68%</p>
+                    </article>
+                </li>
+            </ul>
+        </section>
 
-    </div>
+        <!-- PRÓXIMAS CLASES -->
+        <section class="upcoming-classes">
+            <h2 class="section-title">Próximas clases</h2>
+
+            <ul class="classes-list">
+                <li>
+                    <article class="class-card">
+                        <p class="class-schedule">
+                            <time datetime="11:00" class="class-time">11:00</time>
+                            <span class="class-room">Aula 1</span>
+                        </p>
+                        <p class="class-teacher">
+                            <strong class="teacher-name">J. Rivas</strong>
+                            <small class="teacher-role">Profesor</small>
+                        </p>
+                        <p class="class-details">
+                            <mark class="">Guitarra</mark>
+                            <span class="group-name">Grupo B</span>
+                        </p>
+                    </article>
+                </li>
+                <li>
+                    <article class="class-card">
+                        <p class="class-schedule">
+                            <time datetime="17:00" class="class-time">17:00</time>
+                            <span class="class-room">Aula 1</span>
+                        </p>
+                        <p class="class-teacher">
+                            <strong class="teacher-name">J. Rivas</strong>
+                            <small class="teacher-role">Profesor</small>
+                        </p>
+                        <p class="class-details">
+                            <mark class="instrument-badge badge-guitar">Guitarra</mark>
+                            <span class="group-name">Grupo A</span>
+                        </p>
+                    </article>
+                </li>
+            </ul>
+        </section>
+
+        <!-- OCUPACIÓN POR AULAS -->
+        <section class="classroom-occupancy">
+            <h2 class="section-title">Ocupación por Aulas</h2>
+
+            <ul class="occupancy-list">
+                <li>
+                    <article class="occupancy-card">
+                        <label for="room-1">
+                            <span class="room-name">Aula 1 (Piano)</span>
+                            <span class="occupancy-percentage">85%</span>
+                        </label>
+                        <progress id="room-1" value="85" max="100" class="bar-piano">85%</progress>
+                    </article>
+                </li>
+                <li>
+                    <article class="occupancy-card">
+                        <label for="room-2">
+                            <span class="room-name">Aula 2 (Guitarra)</span>
+                            <span class="occupancy-percentage">60%</span>
+                        </label>
+                        <progress id="room-2" value="60" max="100" class="bar-guitar">60%</progress>
+                    </article>
+                </li>
+                <li>
+                    <article class="occupancy-card">
+                        <label for="room-3">
+                            <span class="room-name">Aula 3 (Batería)</span>
+                            <span class="occupancy-percentage">40%</span>
+                        </label>
+                        <progress id="room-3" value="40" max="100" class="bar-drums">40%</progress>
+                    </article>
+                </li>
+            </ul>
+        </section>
+
+        <!-- AVISOS Y ALERTAS DEL DÍA -->
+        <section class="alerts-section">
+            <h2 class="section-title">Avisos y Alertas del día</h2>
+
+            <ul class="alerts-list">
+                <li class="alert-item alert-warning">
+                    <p>                       
+                        3 Alumnos de la clase de Piano (17:00) tienen cuotas del mes pendientes de pago[cite: 2].
+                    </p>
+                </li>
+                <li class="alert-item alert-info">
+                    <p>
+                        Violín nº 4 marcado como "En Reparación" en el Inventario[cite: 2].
+                    </p>
+                </li>
+            </ul>
+        </section>
+
+    </main>
+
+    <!-- PIE DE PÁGINA -->
+    <footer class="app-footer">
+        
+    </footer>
+
 </body>
-
 </html>
