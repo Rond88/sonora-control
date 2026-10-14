@@ -130,7 +130,6 @@ body {
           }
 
           /* Estado Activo en Dashboard u otros */
-          &:has(a[href="#dashboard"]),
           &:has(a.active) {
             background-color: var(--color-accent-gold);
 
