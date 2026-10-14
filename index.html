@@ -15,16 +15,22 @@
         <!-- BARRA LATERAL -->
         <aside class="sidebar">
             <div class="sidebar-header">
+                <span id="logo">
+                <img src="img/Logo.svg" alt="logo">
+             </span>
                 <h2>Sonora Control</h2>
             </div>
             <nav class="sidebar-nav" aria-label="Navegación principal">
                 <ul>
-                    <li><a href="#dashboard">Dashboard</a></li>
-                    <li><a href="#horarios">Horarios</a></li>
-                    <li><a href="#alumnos">Alumnos</a></li>
-                    <li><a href="#profesores">Profesores</a></li>
-                    <li><a href="#pagos">Pagos</a></li>
-                    <li><a href="#inventario">Inventario</a></li>
+                    <li>
+                        <span id="icon-dashboard">
+                            <img src="img/dashboard.svg" alt="dashboard icon">
+                        </span>
+                        <a href="#dashboard" class="active">Dashboard</a></li>
+                    <li><img src="img/calendar.svg" alt=""><a href="#horarios">Horarios</a></li>
+                    <li><img src="img/students.svg" alt=""><a href="#alumnos">Alumnos</a></li>
+                    <li><img src="img/teacher.svg" alt=""><a href="#profesores">Profesores</a></li>
+                    <li><img src="img/payment.svg" alt=""><a href="#pagos">Pagos</a></li>
                 </ul>
             </nav>
         </aside>
@@ -33,6 +39,7 @@
         <div class="main-wrapper">
 
             <!-- HEADER / TOPBAR DE LA VISTA -->
+             
             <header class="topbar">
                 <h1>Dashboard</h1>
             </header>
@@ -62,53 +69,96 @@
                     </div>
                 </section>
 
-                <!-- 2. BLOQUE DE PRÓXIMAS CLASES -->
-                <section class="upcoming-classes">
-                    <h2 class="section-title">Próximas clases</h2>
+                <!-- 2. CONTENEDOR DE DOS COLUMNAS: PRÓXIMAS CLASES Y OCUPACIÓN -->
+                <div class="dashboard-grid">
+                    
+                    <!-- Próximas clases -->
+                    <section class="upcoming-classes">
+                        <h2 class="section-title">Próximas clases</h2>
 
-                    <div class="classes-list">
+                        <div class="classes-list">
+                            <article class="class-card">
+                                <div class="class-time-group">
+                                    <span class="class-time">11:00</span>
+                                    <span class="class-room">Aula 1</span>
+                                </div>
+                                <div class="class-teacher-group">
+                                    <span class="teacher-name">J. Rivas</span>
+                                    <span class="teacher-role">Profesor</span>
+                                </div>
+                                <div class="class-details">
+                                    <span class="instrument-badge badge-guitar">
+                                        <span class="badge-dot"></span> Guitarra
+                                    </span>
+                                    <span class="group-name">Grupo B</span>
+                                </div>
+                            </article>
 
-                        <!-- Tarjeta 1 -->
-                        <article class="class-card">
-                            <div class="class-time-group">
-                                <span class="class-time">11:00</span>
-                                <span class="class-room">Aula 1</span>
-                            </div>
+                            <article class="class-card">
+                                <div class="class-time-group">
+                                    <span class="class-time">17:00</span>
+                                    <span class="class-room">Aula 1</span>
+                                </div>
+                                <div class="class-teacher-group">
+                                    <span class="teacher-name">J. Rivas</span>
+                                    <span class="teacher-role">Profesor</span>
+                                </div>
+                                <div class="class-details">
+                                    <span class="instrument-badge badge-guitar">
+                                        <span class="badge-dot"></span> Guitarra
+                                    </span>
+                                    <span class="group-name">Grupo A</span>
+                                </div>
+                            </article>
+                        </div>
+                    </section>
 
-                            <div class="class-teacher-group">
-                                <span class="teacher-name">J. Rivas</span>
-                                <span class="teacher-role">Profesor</span>
-                            </div>
+                    <!-- Ocupación por Aulas -->
+                    <section class="classroom-occupancy">
+                        <h2 class="section-title">Ocupación por Aulas</h2>
+                        
+                        <ul class="occupancy-list">
+                            <li>
+                                <article class="occupancy-card">
+                                    <div class="occupancy-header">
+                                        <span class="room-name">Aula 1 (Piano)</span>
+                                        <span class="occupancy-percentage">85%</span>
+                                    </div>
+                                    <progress value="85" max="100" class="bar-piano">85%</progress>
+                                </article>
+                            </li>
+                            <li>
+                                <article class="occupancy-card">
+                                    <div class="occupancy-header">
+                                        <span class="room-name">Aula 2 (Guitarra)</span>
+                                        <span class="occupancy-percentage">60%</span>
+                                    </div>
+                                    <progress value="60" max="100" class="bar-guitar">60%</progress>
+                                </article>
+                            </li>
+                        </ul>
+                    </section>
 
-                            <div class="class-details">
-                                <span class="instrument-badge badge-guitar">
-                                    <span class="badge-dot"></span> Guitarra
-                                </span>
-                                <span class="group-name">Grupo B</span>
-                            </div>
-                        </article>
+                </div>
 
-                        <!-- Tarjeta 2 -->
-                        <article class="class-card">
-                            <div class="class-time-group">
-                                <span class="class-time">17:00</span>
-                                <span class="class-room">Aula 1</span>
-                            </div>
-
-                            <div class="class-teacher-group">
-                                <span class="teacher-name">J. Rivas</span>
-                                <span class="teacher-role">Profesor</span>
-                            </div>
-
-                            <div class="class-details">
-                                <span class="instrument-badge badge-guitar">
-                                    <span class="badge-dot"></span> Guitarra
-                                </span>
-                                <span class="group-name">Grupo At</span>
-                            </div>
-                        </article>
-
-                    </div>
+                <!-- 3. BLOQUE DE AVISOS Y ALERTAS DEL DÍA -->
+                <section class="alerts-section">
+                    <h2 class="section-title">Avisos y Alertas</h2>
+                    
+                    <ul class="alerts-list">
+                        <li class="alert-item alert-warning">
+                            <p class="alert-text">
+                                <span class="alert-icon" aria-hidden="true">⚠️</span>
+                                3 Alumnos de la clase de Piano (17:00) tienen cuotas del mes pendientes de pago.
+                            </p>
+                        </li>
+                        <li class="alert-item alert-info">
+                            <p class="alert-text">
+                                <span class="alert-icon" aria-hidden="true">🎸</span>
+                                Violín nº 4 marcado como "En Reparación" en el Inventario.
+                            </p>
+                        </li>
+                    </ul>
                 </section>
 
             </main>

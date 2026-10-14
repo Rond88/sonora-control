@@ -1,28 +1,22 @@
 /* ==========================================================================
-   SONORA CONTROL - MAIN STYLESHEET (CSS NESTING)
+   SONORA CONTROL - DASHBOARD 
    ========================================================================== */
-/* IMPORTACIÓN DE FUENTE SORA DESDE GOOGLE FONTS */
+
 @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap');
 
-/* 1. VARIABLES & TOKENS DE DISEÑO */
 :root {
-  /* Colores Principales */
   --color-primary-navy: #1B2A41;
   --color-accent-gold: #C9A227;
   --color-bg-paper: #F2EAD3;
   --color-surface-white: #FFFFFF;
   --color-border: #DED2B4;
-
-  /* Textos */
   --color-text-main: #1B2A41;
   --color-text-muted: #6B6B6B;
   --color-text-light: #F2EAD3;
-
-  /* Instrumentos / Badges */
+  
   --badge-guitar-bg: #F5EDD2;
   --badge-guitar-border: #C9A227;
-
-  /* Tipografías & Layout */
+  
   --font-family: 'Sora', system-ui, -apple-system, sans-serif;
   --sidebar-width: 240px;
   --radius-card: 12px;
@@ -30,8 +24,9 @@
   --transition-fast: 0.2s ease;
 }
 
-/* 2. RESET Y ESTILOS BASE */
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -44,7 +39,6 @@ body {
   line-height: 1.5;
 }
 
-/* Ocultar elementos solo legibles por lectores de pantalla */
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -57,12 +51,11 @@ body {
   border: 0;
 }
 
-/* 3. LAYOUT PRINCIPAL (ANIDADO) */
+/* LAYOUT PRINCIPAL */
 .app-layout {
   display: flex;
   min-height: 100vh;
 
-  /* --- BARRA LATERAL (SIDEBAR) --- */
   .sidebar {
     width: var(--sidebar-width);
     background-color: var(--color-primary-navy);
@@ -76,7 +69,14 @@ body {
     .sidebar-header {
       margin-bottom: 32px;
       padding: 0 12px;
+      gap: 12px;
+      display: flex;
+      span#logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
+      }
       h2 {
         font-size: 20px;
         font-weight: 700;
@@ -85,40 +85,65 @@ body {
       }
     }
 
-    .sidebar-nav {
+  .sidebar-nav {
       ul {
         list-style: none;
         display: flex;
         flex-direction: column;
         gap: 8px;
 
-        li a {
-          display: block;
-          padding: 10px 14px;
-          color: rgba(242, 234, 211, 0.8);
-          text-decoration: none;
-          font-weight: 500;
+        li {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          padding: 4px 14px;
           border-radius: 8px;
-          transition: background-color var(--transition-fast), color var(--transition-fast);
+          transition: background-color var(--transition-fast);
 
-          &:hover {
-            background-color: rgba(255, 255, 255, 0.08);
-            color: var(--color-surface-white);
+          /* Contenedores o imágenes de los iconos */
+          span, img {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
           }
 
-          /* Estado Activo en Dashboard */
-          &[href="#dashboard"],
-          &.active {
+          /* Estado hover general para el elemento de lista o enlace */
+          &:hover {
+            background-color: rgba(255, 255, 255, 0.08);
+            
+            a {
+              color: var(--color-surface-white);
+            }
+          }
+
+          a {
+            display: block;
+            width: 100%;
+            padding: 6px 0;
+            color: rgba(242, 234, 211, 0.8);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color var(--transition-fast);
+          }
+
+          /* Estado Activo en Dashboard u otros */
+          &:has(a[href="#dashboard"]),
+          &:has(a.active) {
             background-color: var(--color-accent-gold);
-            color: var(--color-primary-navy);
-            font-weight: 700;
+
+            a {
+              color: var(--color-primary-navy);
+              font-weight: 700;
+            }
           }
         }
       }
     }
   }
 
-  /* --- ÁREA DE TRABAJO DERECHA --- */
   .main-wrapper {
     margin-left: var(--sidebar-width);
     flex: 1;
@@ -143,7 +168,14 @@ body {
       flex-direction: column;
       gap: 32px;
 
-      /* === SECCIÓN 1: KPIs === */
+      .section-title {
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--color-primary-navy);
+        margin-bottom: 16px;
+      }
+
+      /* 1. KPIS */
       #kpi-section {
         .kpi-grid {
           display: grid;
@@ -174,110 +206,144 @@ body {
         }
       }
 
-      /* === SECCIÓN 2: PRÓXIMAS CLASES === */
-      .upcoming-classes {
-        .section-title {
-          font-size: 20px;
-          font-weight: 700;
-          color: var(--color-primary-navy);
-          margin-bottom: 16px;
+      /* CONTENEDOR DE DOS COLUMNAS (PRÓXIMAS CLASES + OCUPACIÓN) */
+      .dashboard-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 24px;
+
+        @media (max-width: 1024px) {
+          grid-template-columns: 1fr;
         }
 
-        .classes-list {
-          display: flex;
-          flex-direction: column;
-          gap: 12px;
+        .upcoming-classes {
+          .classes-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
 
-          .class-card {
-            background-color: var(--color-surface-white);
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-card);
-            padding: 16px 20px;
-            display: grid;
-            grid-template-columns: 120px 180px 1fr;
-            align-items: center;
-            gap: 16px;
-            transition: transform var(--transition-fast), box-shadow var(--transition-fast);
-
-            &:hover {
-              transform: translateY(-2px);
-              box-shadow: 0 4px 12px rgba(27, 42, 65, 0.06);
-            }
-
-            /* Grupo 1: Hora y Aula */
-            .class-time-group {
-              display: flex;
-              flex-direction: column;
-
-              .class-time {
-                font-size: 18px;
-                font-weight: 700;
-                color: var(--color-primary-navy);
-              }
-
-              .class-room {
-                font-size: 13px;
-                color: var(--color-text-muted);
-              }
-            }
-
-            /* Grupo 2: Profesor */
-            .class-teacher-group {
-              display: flex;
-              flex-direction: column;
-
-              .teacher-name {
-                font-size: 15px;
-                font-weight: 600;
-                color: var(--color-primary-navy);
-              }
-
-              .teacher-role {
-                font-size: 12px;
-                color: var(--color-text-muted);
-              }
-            }
-
-            /* Grupo 3: Badge e Info Adicional */
-            .class-details {
-              display: flex;
+            .class-card {
+              background-color: var(--color-surface-white);
+              border: 1px solid var(--color-border);
+              border-radius: var(--radius-card);
+              padding: 16px 20px;
+              display: grid;
+              grid-template-columns: 100px 140px 1fr;
               align-items: center;
-              justify-content: space-between;
+              gap: 16px;
 
-              .group-name {
-                font-size: 14px;
-                font-weight: 600;
-                color: var(--color-text-muted);
+              .class-time-group {
+                display: flex;
+                flex-direction: column;
+                .class-time { font-size: 18px; font-weight: 700; color: var(--color-primary-navy); }
+                .class-room { font-size: 13px; color: var(--color-text-muted); }
               }
 
-              /* Badges de Instrumentos */
-              .instrument-badge {
-                display: inline-flex;
+              .class-teacher-group {
+                display: flex;
+                flex-direction: column;
+                .teacher-name { font-size: 15px; font-weight: 600; color: var(--color-primary-navy); }
+                .teacher-role { font-size: 12px; color: var(--color-text-muted); }
+              }
+
+              .class-details {
+                display: flex;
                 align-items: center;
-                gap: 8px;
-                padding: 6px 12px;
-                border-radius: var(--radius-badge);
-                font-size: 13px;
-                font-weight: 600;
-
-                .badge-dot {
-                  width: 8px;
-                  height: 8px;
-                  border-radius: 50%;
-                }
-
-                /* Variante Guitarra */
-                &.badge-guitar {
+                justify-content: space-between;
+                .group-name { font-size: 14px; font-weight: 600; color: var(--color-text-muted); }
+                
+                .instrument-badge {
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 8px;
+                  padding: 6px 12px;
+                  border-radius: var(--radius-badge);
+                  font-size: 13px;
+                  font-weight: 600;
                   background-color: var(--badge-guitar-bg);
                   color: var(--color-primary-navy);
                   border-left: 3px solid var(--badge-guitar-border);
 
                   .badge-dot {
+                    width: 8px;
+                    height: 8px;
+                    border-radius: 50%;
                     background-color: var(--badge-guitar-border);
                   }
                 }
               }
             }
+          }
+        }
+
+        .classroom-occupancy {
+          .occupancy-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+
+            .occupancy-card {
+              background-color: var(--color-surface-white);
+              border: 1px solid var(--color-border);
+              border-radius: var(--radius-card);
+              padding: 16px;
+
+              .occupancy-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 8px;
+                .room-name { font-size: 14px; font-weight: 600; color: var(--color-primary-navy); }
+                .occupancy-percentage { font-size: 14px; font-weight: 700; color: var(--color-text-muted); }
+              }
+
+              progress {
+                width: 100%;
+                height: 8px;
+                appearance: none;
+                border: none;
+                border-radius: 4px;
+                overflow: hidden;
+                background-color: var(--color-bg-paper);
+
+                &::-webkit-progress-bar { background-color: var(--color-bg-paper); border-radius: 4px; }
+                &::-webkit-progress-value { border-radius: 4px; }
+                &.bar-piano::-webkit-progress-value { background-color: var(--color-primary-navy); }
+                &.bar-guitar::-webkit-progress-value { background-color: var(--color-accent-gold); }
+              }
+            }
+          }
+        }
+      }
+
+      /* 3. ALERTAS Y AVISOS */
+      .alerts-section {
+        .alerts-list {
+          list-style: none;
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+
+          .alert-item {
+            background-color: var(--color-surface-white);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: 12px 16px;
+            border-left: 4px solid transparent;
+
+            .alert-text {
+              font-size: 14px;
+              font-weight: 500;
+              color: var(--color-primary-navy);
+              display: flex;
+              align-items: center;
+              gap: 12px;
+              .alert-icon { font-size: 18px; }
+            }
+
+            &.alert-warning { border-left-color: var(--color-accent-gold); }
+            &.alert-info { border-left-color: var(--color-primary-navy); }
           }
         }
       }
