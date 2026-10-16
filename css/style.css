@@ -354,3 +354,43 @@ body {
     }
   }
 }
+/* ==========================================================================
+   MEDIA QUERY ÚNICA PARA 800px
+   ========================================================================== */
+@media (max-width: 800px) {
+
+  .app-layout {
+    flex-direction: column;
+
+    .sidebar {
+      position: relative;
+      width: 100%;
+      height: auto;
+    }
+
+    .main-wrapper {
+      margin-left: 0;
+    }
+  }
+
+  .dashboard-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .app-layout .main-wrapper .content-area {
+    padding: 0 16px 24px;
+    gap: 20px;
+
+    .upcoming-classes .classes-list .class-card {
+      grid-template-columns: 1fr;
+      gap: 12px;
+      padding: 16px;
+
+      .class-details {
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+      }
+    }
+  }
+}
